@@ -1,0 +1,31 @@
+diff --git a/models/fph.py b/models/fph.py
+index e51cbed..d241365 100644
+--- a/models/fph.py
++++ b/models/fph.py
+@@ -55,7 +55,7 @@ class MBConvBlock(nn.Module):
+         self._bn1 = nn.BatchNorm2d(num_features=oup, momentum=self._bn_mom, eps=self._bn_eps)
+         image_size = calculate_output_image_size(image_size, s)
+         if self.has_se:
+-            Conv2d = get_same_padding_conv2d(image_size=(1, 1))
++            Conv2d = get_same_padding_conv2d(image_size=[1, 1])
+             num_squeezed_channels = max(1, int(self._block_args.input_filters * self._block_args.se_ratio))
+             self._se_reduce = Conv2d(in_channels=oup, out_channels=num_squeezed_channels, kernel_size=1)
+             self._se_expand = Conv2d(in_channels=num_squeezed_channels, out_channels=oup, kernel_size=1)
+diff --git a/models/swins.py b/models/swins.py
+index 12db301..92c3e3a 100644
+--- a/models/swins.py
++++ b/models/swins.py
+@@ -4,6 +4,13 @@ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.utils.checkpoint as checkpoint
+ from timm.models.layers import DropPath, to_2tuple, trunc_normal_
++# Ensure DropPath has scale_by_keep attr for checkpoint compatibility
++_orig_dp_init = DropPath.__init__
++def _dp_init(self, *a, scale_by_keep=False, **kw):
++    _orig_dp_init(self, *a, **kw)
++    if not hasattr(self, 'scale_by_keep'):
++        self.scale_by_keep = scale_by_keep
++DropPath.__init__ = _dp_init
+ import numpy as np
+ 
+ 

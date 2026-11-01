@@ -1,0 +1,19 @@
+# Third-party method clones (recreate with scripts/setup_methods.sh)
+/methods/*/
+!/methods/patches/
+!/methods/wrappers/
+!/methods/setup_notes/
+
+# Datasets and run outputs
+/data/
+/results/E*/
+/results/instance_level/
+/results/visualizations/
+*.npy
+*.npz
+
+# Python / environments
+__pycache__/
+*.pyc
+venv/
+.venv/

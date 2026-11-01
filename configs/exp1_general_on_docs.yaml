@@ -1,0 +1,117 @@
+# Experiment 1: General forensics methods on document data
+# Paths are relative to the repository root. See docs/DATASETS.md for the expected data/ layout
+# and methods/README.md for where each method's weights go.
+experiment:
+  name: general_on_docs
+  description: 'Evaluate general image forensic methods on document-specific datasets. Tests whether methods
+    trained on natural images transfer to document domain.
+
+    '
+methods:
+- name: TruFor
+  repo: methods/TruFor
+  framework: pytorch
+  task: localization
+  weights: TruFor_train_test/pretrained_models/weights/trufor.pth.tar
+  input_size:
+  - 512
+  - 512
+- name: ManTraNet
+  repo: methods/ManTraNet
+  framework: keras
+  task: localization
+  weights: pretrained_weights/ManTraNet_Ptrain4.h5
+  pretrain_index: 4
+- name: MVSS-Net
+  repo: methods/MVSS-Net
+  framework: pytorch
+  task: localization
+  weights: ckpt/mvssnet_model/mvssnet_casia.pt
+  input_size:
+  - 512
+  - 512
+- name: CAT-Net
+  repo: methods/CAT-Net
+  framework: pytorch
+  task: localization
+  weights: output/splicing_dataset/CAT_full/CAT_full_v2.pth.tar
+  input_size:
+  - 512
+  - 512
+- name: PSCC-Net
+  repo: methods/PSCC-Net
+  framework: pytorch
+  task: localization
+  weights: checkpoints/HRNet.pth
+  input_size:
+  - 512
+  - 512
+- name: IML-ViT
+  repo: methods/IML-ViT
+  framework: pytorch
+  task: localization
+  weights: checkpoints/iml-vit_checkpoint.pth
+  input_size:
+  - 1024
+  - 1024
+- name: SAFIRE
+  repo: methods/SAFIRE
+  framework: pytorch
+  task: localization
+  weights: safire.pth
+  input_size:
+  - 1024
+  - 1024
+datasets:
+- name: DocTamper
+  root: data/DocTamper/test
+  image_dir: images
+  mask_dir: masks
+  format: png
+  max_samples: 1000
+- name: T-SROIE
+  root: data/T-SROIE
+  image_dir: test
+  mask_dir: test/masks
+  format: jpg
+  mask_format: png
+- name: RealTextManipulation
+  root: data/RealTextManipulation
+  image_dir: JPEGImages
+  mask_dir: SegmentationClass
+  format: jpg
+  mask_format: png
+  split_file: test_tampered.txt
+  max_samples: 1000
+- name: Tampered-IC13
+  root: data/Tampered-IC13/Tampered-IC13
+  image_dir: test_img
+  mask_dir: test_masks
+  format: jpg
+  mask_format: png
+- name: ReceiptForgery
+  root: data/ReceiptForgery/findit2
+  image_dir: test
+  mask_dir: test_masks
+  format: png
+  mask_format: png
+- name: MixTamper
+  root: data/MixTamper
+  image_dir: img
+  mask_dir: mask
+  format: png
+  max_samples: 1000
+- name: FSTS-1.5k
+  root: data/FSTS-1.5k
+  image_dir: images
+  mask_dir: masks
+  format: png
+  mask_format: png
+evaluation:
+  metrics:
+  - pixel_f1
+  - pixel_iou
+  - pixel_auc
+  - optimal_f1
+  threshold: 0.5
+  output_dir: results/E1

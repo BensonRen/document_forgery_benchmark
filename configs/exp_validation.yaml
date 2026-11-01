@@ -1,0 +1,80 @@
+# exp_validation.yaml
+# Paths are relative to the repository root. See docs/DATASETS.md for the expected data/ layout
+# and methods/README.md for where each method's weights go.
+experiment:
+  name: E_validation
+  description: 'Validate E1 general forensics methods on standard forensics datasets (COVERAGE copy-move,
+    Columbia splicing) to check paper-vs-benchmark alignment.
+
+    '
+methods:
+- name: TruFor
+  repo: methods/TruFor
+  framework: pytorch
+  task: localization
+  weights: TruFor_train_test/pretrained_models/weights/trufor.pth.tar
+  input_size:
+  - 512
+  - 512
+- name: MVSS-Net
+  repo: methods/MVSS-Net
+  framework: pytorch
+  task: localization
+  weights: ckpt/mvssnet_model/mvssnet_casia.pt
+- name: PSCC-Net
+  repo: methods/PSCC-Net
+  framework: pytorch
+  task: localization
+  weights: saved_models/PSCC-Net.pth
+- name: IML-ViT
+  repo: methods/IML-ViT
+  framework: pytorch
+  task: localization
+  weights: checkpoints/iml-vit_checkpoint.pth
+- name: ManTraNet
+  repo: methods/ManTraNet
+  framework: keras
+  task: localization
+  weights: pretrained_weights/ManTraNet_Ptrain4.h5
+  pretrain_index: 4
+- name: CAT-Net
+  repo: methods/CAT-Net
+  framework: pytorch
+  task: localization
+  weights: output/splicing_dataset/CAT_full/CAT_full_v2.pth.tar
+  input_size:
+  - 512
+  - 512
+datasets:
+- name: COVERAGE
+  root: data/COVERAGE_val
+  image_dir: images
+  mask_dir: masks
+  format: tif
+- name: Columbia
+  root: data/Columbia_val
+  image_dir: images
+  mask_dir: masks
+  format: tif
+  mask_format: png
+- name: CASIAv1
+  root: data/CASIA1_val
+  image_dir: images
+  mask_dir: masks
+  format: jpg
+  mask_format: png
+- name: IMD20
+  root: data/IMD20_val
+  image_dir: images
+  mask_dir: masks
+  format: jpg
+  mask_format: png
+evaluation:
+  metrics:
+  - pixel_f1
+  - pixel_iou
+  - pixel_auc
+  - optimal_f1
+  threshold: 0.5
+  output_dir: results/E_validation
+  per_image_dir: results/E_validation/per_image

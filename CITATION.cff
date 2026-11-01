@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+message: "If you use DocForge-Bench, please cite the paper."
+title: "DocForge-Bench: A Comprehensive Benchmark for Document Forgery Detection and Analysis"
+type: software
+repository-code: "https://github.com/scamai/docforge-bench"
+authors:
+  - family-names: Zhao
+    given-names: Zengqi
+  - family-names: Xia
+    given-names: Weidi
+  - family-names: Wei
+    given-names: En
+  - family-names: Zhang
+    given-names: Yan
+  - family-names: Mo
+    given-names: Jane
+  - family-names: Zhang
+    given-names: Tiannan
+  - family-names: Dai
+    given-names: Yuanqin
+  - family-names: Chen
+    given-names: Zexi
+  - family-names: Tao
+    given-names: Yiran
+  - family-names: Ren
+    given-names: Simiao
+preferred-citation:
+  type: article
+  title: "DOCFORGE-BENCH: A Comprehensive Benchmark for Document Forgery Detection and Analysis"
+  authors:
+    - family-names: Zhao
+      given-names: Zengqi
+    - family-names: Xia
+      given-names: Weidi
+    - family-names: Wei
+      given-names: En
+    - family-names: Zhang
+      given-names: Yan
+    - family-names: Mo
+      given-names: Jane
+    - family-names: Zhang
+      given-names: Tiannan
+    - family-names: Dai
+      given-names: Yuanqin
+    - family-names: Chen
+      given-names: Zexi
+    - family-names: Tao
+      given-names: Yiran
+    - family-names: Ren
+      given-names: Simiao
+  year: 2026
+  journal: "arXiv preprint"
+  identifiers:
+    - type: other
+      value: "arXiv:2603.01433"
+  url: "https://arxiv.org/abs/2603.01433"

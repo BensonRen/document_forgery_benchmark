@@ -1,0 +1,11 @@
+TruFor|https://github.com/grip-unina/TruFor.git|ae54475df6f41a491d7615100feb19263dec13f7
+ManTraNet|https://github.com/ISICV/ManTraNet.git|59436db177eba11cacba846d53eb7b44b6d482ea
+MVSS-Net|https://github.com/dong03/MVSS-Net.git|cc2aed77a823723015f95e4a6a3e344f3ddb7ccc
+CAT-Net|https://github.com/mjkwon2021/CAT-Net.git|b50d391ffc423d3631fd7947714468788c791805
+PSCC-Net|https://github.com/proteus1991/PSCC-Net.git|53e5ff77d8dc5feddda060cd085f9b765761f816
+IML-ViT|https://github.com/SunnyHaze/IML-ViT.git|07dd2be0f4ea27a5c97c9fa5ffbe236733833eac
+SAFIRE|https://github.com/mjkwon2021/SAFIRE|a064265d0b84d9e1a5f9b17c8fcf812b32f1b4c5
+DocTamper|https://github.com/qcf-568/DocTamper.git|813be3142fdd0096f3655eef8b02bb08c59cfd82
+ForensicHub|https://github.com/scu-zjz/ForensicHub.git|75df28869479dc85ce31956e73428e4011af1bd2
+RTM|https://github.com/DrLuo/RTM|73277189695583b5ffc551ea5ff55f556b1a1443
+ADCD-Net|https://github.com/KAHIMWONG/ADCD-Net|65292b785362285724f238abe2753f7ab2dfb35e

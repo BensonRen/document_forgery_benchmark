@@ -1,0 +1,52 @@
+diff --git a/Splicing/data/AbstractDataset.py b/Splicing/data/AbstractDataset.py
+index 827367e..9647016 100644
+--- a/Splicing/data/AbstractDataset.py
++++ b/Splicing/data/AbstractDataset.py
+@@ -96,7 +96,7 @@ class AbstractDataset(ABC):
+             DCT_coef.append(out_arr)
+ 
+         # quantization tables
+-        qtables = [jpeg.quant_tables[ci[i].quant_tbl_no].astype(np.float) for i in range(num_channels)]
++        qtables = [jpeg.quant_tables[ci[i].quant_tbl_no].astype(np.float64) for i in range(num_channels)]
+ 
+         return DCT_coef, qtables
+ 
+diff --git a/lib/models/network_DCT.py b/lib/models/network_DCT.py
+index 1f9a5b5..b678349 100644
+--- a/lib/models/network_DCT.py
++++ b/lib/models/network_DCT.py
+@@ -303,7 +303,7 @@ class DCT_Stream(nn.Module):
+         self.dc_stage4, DC_final_stage_channels = self._make_stage(
+             self.dc_stage4_cfg, num_channels, multi_scale_output=True)
+ 
+-        last_inp_channels = np.int(np.sum(DC_final_stage_channels))  # 672
++        last_inp_channels = int(np.sum(DC_final_stage_channels))  # 672
+         self.last_layer = nn.Sequential(
+             nn.Conv2d(
+                 in_channels=last_inp_channels,
+diff --git a/lib/utils/utils.py b/lib/utils/utils.py
+index 385236a..725309f 100644
+--- a/lib/utils/utils.py
++++ b/lib/utils/utils.py
+@@ -127,7 +127,7 @@ def get_confusion_matrix(label, pred, size, num_class, ignore=-1):
+     output = pred.cpu().numpy().transpose(0, 2, 3, 1)
+     seg_pred = np.asarray(np.argmax(output, axis=3), dtype=np.uint8)
+     seg_gt = np.asarray(
+-    label.cpu().numpy()[:, :size[-2], :size[-1]], dtype=np.int)
++    label.cpu().numpy()[:, :size[-2], :size[-1]], dtype=np.int64)
+ 
+     ignore_index = seg_gt != ignore
+     seg_gt = seg_gt[ignore_index]
+diff --git a/tools/train.py b/tools/train.py
+index eb0046f..fdbf830 100644
+--- a/tools/train.py
++++ b/tools/train.py
+@@ -153,7 +153,7 @@ def main():
+     else:
+         raise ValueError('Only Support SGD optimizer')
+ 
+-    epoch_iters = np.int(train_dataset.__len__() /
++    epoch_iters = int(train_dataset.__len__() /
+                          config.TRAIN.BATCH_SIZE_PER_GPU / len(gpus))
+     best_p_mIoU = 0
+     last_epoch = 0

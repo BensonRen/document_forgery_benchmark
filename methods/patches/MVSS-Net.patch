@@ -1,0 +1,24 @@
+diff --git a/common/transforms.py b/common/transforms.py
+index 7677331..851fb0a 100644
+--- a/common/transforms.py
++++ b/common/transforms.py
+@@ -1,4 +1,18 @@
+-from albumentations.pytorch.functional import img_to_tensor
++# local img_to_tensor replacement (albumentations 1.4+ removed albumentations.pytorch)
++import torch
++import numpy as np
++
++def img_to_tensor(img, normalize=None):
++    """Convert numpy image (H,W,C) to torch tensor (C,H,W) with optional normalization."""
++    tensor = torch.from_numpy(img.transpose(2, 0, 1))
++    if normalize:
++        mean = torch.tensor(normalize["mean"]).view(3, 1, 1)
++        std = torch.tensor(normalize["std"]).view(3, 1, 1)
++        tensor = (tensor.float() / 255.0 - mean) / std
++    else:
++        tensor = tensor.float() / 255.0
++    return tensor
++
+ import pdb
+ 
+ 
