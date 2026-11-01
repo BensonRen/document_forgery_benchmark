@@ -12,7 +12,7 @@ Requires CSVs to have been generated with the updated scripts that include the
 are skipped with a warning.
 
 Usage:
-    cd docforge-bench   # repository root
+    cd document_forgery_benchmark   # repository root
     python scripts/compute_image_metrics.py --per-image-dir results/E2/per_image
     python scripts/compute_image_metrics.py --per-image-dir results/E1/per_image --output results/E1/image_metrics.json
     python scripts/compute_image_metrics.py --all   # process E1 and E2 together

@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use DocForge-Bench, please cite the paper."
 title: "DocForge-Bench: A Comprehensive Benchmark for Document Forgery Detection and Analysis"
 type: software
-repository-code: "https://github.com/scamai/docforge-bench"
+repository-code: "https://github.com/BensonRen/document_forgery_benchmark"
 authors:
   - family-names: Zhao
     given-names: Zengqi

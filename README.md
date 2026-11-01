@@ -44,8 +44,8 @@ Main scripts:
 ## Quick start
 
 ```bash
-git clone https://github.com/scamai/docforge-bench.git
-cd docforge-bench
+git clone https://github.com/BensonRen/document_forgery_benchmark.git
+cd document_forgery_benchmark
 
 # 1. Main environment
 python -m venv venv && source venv/bin/activate
